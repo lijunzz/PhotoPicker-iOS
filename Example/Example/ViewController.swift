@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     
     @IBAction private func clickPickerPhoto() {
         pickerManager.show(self) { image in
+            // 压缩照片再显示
             let image = image.compress()
             self.previewImage?.image = image
         }
