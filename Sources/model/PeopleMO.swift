@@ -1,4 +1,4 @@
-//===--- Constants.swift -------------------------------------------------===//
+//===--- PeopleMO.swift ---------------------------------------------------===//
 //
 // Copyright (C) 2018 LiJun
 //
@@ -16,10 +16,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-struct Constants {
+public struct PeopleMO {
     
-    /// Toolbox 的套装 ID
-    static let ToolboxIdentifier = "net.junzz.lib.Toolbox"
+    public let familyName: String
+    public let givenName: String
+    public let phone: [String]
     
 }
-

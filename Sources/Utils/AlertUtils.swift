@@ -34,7 +34,7 @@ public struct AlertUtils {
         
         var actionsNew: [UIAlertAction] = []
         
-        let cancelAction = UIAlertAction(title: "Cancel".language(identifier: Constants.ToolboxIdentifier), style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancel".language(), style: .cancel)
         
         actionsNew.append(cancelAction)
         

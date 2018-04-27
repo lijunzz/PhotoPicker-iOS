@@ -28,3 +28,6 @@
 
 "NotificationsActionSheetTitle" = "无法访问通知";
 "NotificationsActionSheetMessage" = "要启用访问权限，请转到设置>通知并打开此应用的通知访问权限。";
+
+"ContactsActionSheetTitle" = "无法访问通讯录";
+"ContactsActionSheetMessage" = "要启用访问权限，请转到设置>通讯录并打开此应用的通讯录访问权限。";

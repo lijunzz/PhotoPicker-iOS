@@ -32,6 +32,12 @@ class ViewController: UIViewController {
         Log.enabled = true
         
         NotificationsUtils.register(self)
+        
+        ContactUtils.allPeoples(self) {
+            $0.forEach({
+                "contacts name: \($0.familyName)\($0.givenName)".log()
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,7 +52,7 @@ class ViewController: UIViewController {
         
         imagePicker.showSelector(self) { image in
             let image = image.compress()
-            print("showImage")
+            "showImage".log()
             imagePreview.image = image
         }
     }

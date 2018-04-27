@@ -28,3 +28,6 @@
 
 "NotificationsActionSheetTitle" = "Unable to access the Notifications";
 "NotificationsActionSheetMessage" = "To enable access, go to Settings > Notifications and turn on Notifications access for this app.";
+
+"ContactsActionSheetTitle" = "Unable to access the Contacts";
+"ContactsActionSheetMessage" = "To enable access, go to Settings > Contacts and turn on Contacts access for this app.";

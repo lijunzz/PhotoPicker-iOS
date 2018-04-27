@@ -23,6 +23,7 @@ public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImage
     
     /// 图片选择后通过闭包返回
     public typealias ImagePickerClosure = (UIImage) -> Void
+    private typealias AuthorizationClosure = (Bool) -> Void
     
     private let picker = UIImagePickerController()
     private var imageClosure: ImagePickerClosure?
@@ -33,12 +34,12 @@ public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImage
         picker.delegate = self
     }
     
-    /// 获取图片
+    /// 检查是否授权
     ///
     /// - Parameters:
     ///   - vc: UIViewController
-    ///   - closure: 图片闭包
-    public func showSelector(_ vc: UIViewController, closure: @escaping ImagePickerClosure) {
+    ///   - closure: 授权结果
+    private func authorizationStatus(_ vc: UIViewController, closure: @escaping AuthorizationClosure) {
         switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
         case .denied:
             // Denied access to camera, alert the user.
@@ -54,7 +55,6 @@ public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImage
                     }
                 }
             })
-            
             AlertUtils.showDialog(vc, title: "PhotoPickerActionSheetTitle".language(), body: "PhotoPickerActionSheetMessage".language(), actions: [settingsAction])
         case .notDetermined:
             // The user has not yet been presented with the option to grant access to the camera hardware.
@@ -66,17 +66,23 @@ public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImage
             AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { granted in
                 if granted {
                     DispatchQueue.main.async {
-                        self.showImageSelector(vc)
+                        closure(true)
                     }
                 }
             })
         default:
             // Allowed access to camera, go ahead and present the UIImagePickerController.
-            showImageSelector(vc)
+            closure(true)
             break
         }
+    }
+    
+    private func showImagePicker(_ vc: UIViewController, sourceType: UIImagePickerControllerSourceType) {
+        picker.sourceType = sourceType
+        picker.mediaTypes = [kUTTypeImage as String]
+        picker.modalPresentationStyle = (sourceType == .camera) ? .fullScreen : .popover
         
-        imageClosure = closure
+        vc.present(picker, animated: true)
     }
     
     /// 显示图片选择器
@@ -101,14 +107,6 @@ public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImage
         vc.present(alert, animated: true)
     }
     
-    private func showImagePicker(_ vc: UIViewController, sourceType: UIImagePickerControllerSourceType) {
-        picker.sourceType = sourceType
-        picker.mediaTypes = [kUTTypeImage as String]
-        picker.modalPresentationStyle = (sourceType == .camera) ? .fullScreen : .popover
-        
-        vc.present(picker, animated: true)
-    }
-    
     /// 选择图片后，系统在此方法返回图片
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         "UIImagePickerController finishPickingMedia".log()
@@ -125,6 +123,21 @@ public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImage
         }
         
         imageClosure(image)
+    }
+    
+    /// 获取图片
+    ///
+    /// - Parameters:
+    ///   - vc: UIViewController
+    ///   - closure: 图片选择结果
+    public func showSelector(_ vc: UIViewController, closure: @escaping ImagePickerClosure) {
+        authorizationStatus(vc) {
+            if $0 {
+                self.showImageSelector(vc)
+            }
+            
+            self.imageClosure = closure
+        }
     }
     
 }

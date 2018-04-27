@@ -43,5 +43,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Contacts</string>
 </dict>
 </plist>

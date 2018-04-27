@@ -28,10 +28,9 @@ extension String {
     /// - Parameters:
     ///   - identifier: 套装 ID，以加载不同模块的语言文件。
     /// - Returns: 本地语言对应的字符串
-    public func language(identifier: String? = nil) -> String {
-        let identifier = identifier ?? Constants.ToolboxIdentifier
-        let bundle = Bundle(identifier: identifier)
-        return bundle != nil ? NSLocalizedString(self, bundle: bundle!, comment: self) : self
+    public func language(identifier: AnyClass = ImagePickerUtils.self) -> String {
+        let bundle = Bundle(for: ImagePickerUtils.self)
+        return NSLocalizedString(self, bundle: bundle, comment: self)
     }
     
     //===--- Base64 --------------------------------------------------------===//

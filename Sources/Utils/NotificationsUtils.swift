@@ -18,48 +18,62 @@
 
 import UserNotifications
 
-// App 在前台不会出现横幅。^_^
+// App 在前台不会出现通知横幅。^_^
 // https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html
 public struct NotificationsUtils {
     
-    /// 检查是否授权并注册通知
+    private typealias AuthorizationClosure = (Bool) -> Void
+    
+    /// 检查是否授权
     ///
     /// - Parameters:
-    ///   - viewController: 宿主控制器
-    ///   - granted: 收钱的闭包
-    public static func register(_ vc: UIViewController, result: ((Bool) -> Void)? = nil) {
-        let identifierGeneral = "GENERAL"
-        
+    ///   - vc: UIViewController
+    ///   - closure: 授权结果
+    private static func authorizationStatus(_ vc: UIViewController, closure: @escaping AuthorizationClosure) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { settings in
                 switch settings.authorizationStatus {
                 case .denied:
                     // 提示用户权限被拒绝
-                    let settingsAction = UIAlertAction(title: "Settings".language(identifier: Constants.ToolboxIdentifier), style: .default, handler: { _ in
+                    let settingsAction = UIAlertAction(title: "Settings".language(), style: .default, handler: { _ in
                         guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else { return }
                         // Take the user to Settings app to possibly change permission.
                         if UIApplication.shared.canOpenURL(settingsUrl) {
                             UIApplication.shared.open(settingsUrl)
                         }
                     })
-                    
-                    AlertUtils.showDialog(vc,
-                                          title: "NotificationsActionSheetTitle".language(),
-                                          body: "NotificationsActionSheetMessage".language(),
-                                          actions: [settingsAction])
-                    
-                    if let result = result {
-                        result(false)
-                    }
+                    AlertUtils.showDialog(vc, title: "NotificationsActionSheetTitle".language(), body: "NotificationsActionSheetMessage".language(), actions: [settingsAction])
                 case .notDetermined:
                     let center = UNUserNotificationCenter.current()
                     center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                         guard granted else {
-                            "Unable to send notification: \(error?.localizedDescription ?? "")".log()
-                            if let result = result {
-                                result(false)
-                            }
+                            return
+                        }
+                        closure(true)
+                    }
+                case .authorized:
+                    closure(true)
+                }
+            }
+        } else {
+            closure(true)
+        }
+    }
+    
+    /// 注册通知
+    ///
+    /// - Parameters:
+    ///   - vc: UIViewController
+    public static func register(_ vc: UIViewController) {
+        authorizationStatus(vc) {
+            if $0 {
+                let identifierGeneral = "GENERAL"
+                
+                if #available(iOS 10.0, *) {
+                    let center = UNUserNotificationCenter.current()
+                    center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                        guard granted else {
                             return
                         }
                         
@@ -70,31 +84,18 @@ public struct NotificationsUtils {
                         
                         // Register the notification categories.
                         center.setNotificationCategories([generalCategory])
-                        
-                        if let result = result {
-                            result(true)
-                        }
                     }
-                case .authorized:
-                    if let result = result {
-                        result(true)
-                    }
-                    break
+                } else {
+                    // 兼容低版本
+                    let types: UIUserNotificationType = [.alert, .sound, .badge]
+                    
+                    let generalCategory = UIMutableUserNotificationCategory()
+                    generalCategory.identifier = identifierGeneral
+                    
+                    let settings = UIUserNotificationSettings(types: types, categories: [generalCategory])
+                    
+                    UIApplication.shared.registerUserNotificationSettings(settings)
                 }
-            }
-        } else {
-            // 兼容低版本
-            let types: UIUserNotificationType = [.alert, .sound, .badge]
-            
-            let generalCategory = UIMutableUserNotificationCategory()
-            generalCategory.identifier = identifierGeneral
-            
-            let settings = UIUserNotificationSettings(types: types, categories: [generalCategory])
-            
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            
-            if let result = result {
-                result(true)
             }
         }
     }
