@@ -19,6 +19,9 @@
 import AVFoundation
 import MobileCoreServices
 
+// https://developer.apple.com/library/content/samplecode/PhotoPicker/Introduction/Intro.html
+// https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Introduction/Introduction.html
+/// 选取相册或相机中的照片。
 public class ImagePickerUtils: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     /// 图片选择后通过闭包返回

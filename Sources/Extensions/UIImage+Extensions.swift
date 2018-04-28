@@ -16,6 +16,7 @@
 //
 //===----------------------------------------------------------------------===//
 
+// https://github.com/hucool/WXImageCompress
 extension UIImage {
     
     /// 压缩图片
