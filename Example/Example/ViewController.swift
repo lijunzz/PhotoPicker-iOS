@@ -69,5 +69,9 @@ class ViewController: UIViewController {
         NotificationsUtils.remove()
     }
     
+    @IBAction func share() {
+        ShareUtils.fire(self, content: "Junzz http://junzz.net/")
+    }
+    
 }
 

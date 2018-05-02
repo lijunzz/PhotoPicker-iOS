@@ -38,7 +38,7 @@ extension String {
     /// 将文本使用 Base64 编码。
     ///
     /// - Returns: Base64
-    public func base64() -> String {
+    public func base64EncodedString() -> String {
         guard let base64Data = data(using: .utf8), !isEmpty else {
             return self
         }

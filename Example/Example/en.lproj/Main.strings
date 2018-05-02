@@ -24,3 +24,6 @@
 
 /* Class = "UIButton"; normalTitle = "Remove Notification"; ObjectID = "LWu-7e-xFE"; */
 "LWu-7e-xFE.normalTitle" = "Remove Notification";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "s5r-cr-8dN"; */
+"s5r-cr-8dN.normalTitle" = "Share";

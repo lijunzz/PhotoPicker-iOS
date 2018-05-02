@@ -54,14 +54,27 @@
                                     <action selector="removeLocalNotification" destination="BYZ-38-t0r" eventType="touchUpInside" id="ntZ-Qk-LIS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5r-cr-8dN">
+                                <rect key="frame" x="167" y="466.5" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="240" id="n1Q-R1-tfC"/>
+                                    <constraint firstAttribute="height" constant="30" id="zKD-ga-HXy"/>
+                                </constraints>
+                                <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="share" destination="BYZ-38-t0r" eventType="touchUpInside" id="MdD-7n-h5f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yeq-gO-lac" secondAttribute="trailing" id="2f4-FD-THc"/>
                             <constraint firstItem="Ev8-Oe-aPW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Dvl-2o-D4K"/>
+                            <constraint firstItem="s5r-cr-8dN" firstAttribute="top" secondItem="LWu-7e-xFE" secondAttribute="bottom" constant="16" id="QGC-B3-Xz2"/>
                             <constraint firstItem="DYC-NH-noa" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Txj-04-7S0"/>
                             <constraint firstItem="DYC-NH-noa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bRE-Yl-QIu"/>
                             <constraint firstItem="LWu-7e-xFE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eqA-Hk-oeL"/>
+                            <constraint firstItem="s5r-cr-8dN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ewV-aJ-2Wm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yeq-gO-lac" secondAttribute="bottom" id="j1L-0U-GFR"/>
                             <constraint firstItem="yeq-gO-lac" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nfn-Kr-815"/>
                             <constraint firstItem="Ev8-Oe-aPW" firstAttribute="top" secondItem="DYC-NH-noa" secondAttribute="bottom" constant="16" id="oOq-5H-7IV"/>
