@@ -28,8 +28,8 @@ extension String {
     /// - Parameters:
     ///   - identifier: 套装 ID，以加载不同模块的语言文件。
     /// - Returns: 本地语言对应的字符串
-    public func language(identifier: AnyClass = ImagePickerUtils.self) -> String {
-        let bundle = Bundle(for: ImagePickerUtils.self)
+    public func language(identifier: AnyClass = ImagePicker.self) -> String {
+        let bundle = Bundle(for: ImagePicker.self)
         return NSLocalizedString(self, bundle: bundle, comment: self)
     }
     

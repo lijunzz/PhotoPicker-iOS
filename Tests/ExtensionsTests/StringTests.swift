@@ -47,9 +47,9 @@ class StringTests: XCTestCase {
     
     /// 测试Base64转换
     func testBase64() {
-        XCTAssertEqual("".base64(), "")
-        XCTAssertEqual("Base64".base64(), "QmFzZTY0")
-        XCTAssertNotEqual("Base64".base64(), "Base64")
+        XCTAssertEqual("".base64EncodedString(), "")
+        XCTAssertEqual("Base64".base64EncodedString(), "QmFzZTY0")
+        XCTAssertNotEqual("Base64".base64EncodedString(), "Base64")
     }
     
 }

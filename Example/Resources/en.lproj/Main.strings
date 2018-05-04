@@ -1,0 +1,29 @@
+//===--- Main.storyboard --------------------------------------------------===//
+//
+// Copyright (C) 2018 LiJun
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+//===----------------------------------------------------------------------===//
+
+/* Class = "UIButton"; normalTitle = "Image Picker"; ObjectID = "DYC-NH-noa"; */
+"DYC-NH-noa.normalTitle" = "Image Picker";
+
+/* Class = "UIButton"; normalTitle = "Local Notification"; ObjectID = "Ev8-Oe-aPW"; */
+"Ev8-Oe-aPW.normalTitle" = "Local Notification";
+
+/* Class = "UIButton"; normalTitle = "Remove Notification"; ObjectID = "LWu-7e-xFE"; */
+"LWu-7e-xFE.normalTitle" = "Remove Notification";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "s5r-cr-8dN"; */
+"s5r-cr-8dN.normalTitle" = "Share";
