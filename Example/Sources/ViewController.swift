@@ -32,12 +32,6 @@ class ViewController: UIViewController {
         Log.enabled = true
         
         Notifications.register(self)
-        
-        Contact.allPeoples(self) {
-            $0.forEach({
-                "contacts name: \($0.familyName)\($0.givenName)".log()
-            })
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,11 +52,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showLocalNotification() {
-        var time = DateComponents()
-        time.hour = 13
-        time.minute = 51
+        /*
+         var time = DateComponents()
+         time.hour = 13
+         time.minute = 51
+         */
         
-        Notifications.local(title: "测试", body: "测试内容", time: time, categoryIdentifier: "Test", requestIdentifier: "Test-Identifier")
+        Notifications.local(title: "测试", body: "测试内容", time: nil, categoryIdentifier: "Test", requestIdentifier: "Test-Identifier")
     }
     
     @IBAction func removeLocalNotification() {
@@ -71,6 +67,14 @@ class ViewController: UIViewController {
     
     @IBAction func share() {
         Share.fire(self, content: "Junzz http://junzz.net/")
+    }
+    
+    @IBAction func loadContact() {
+        Contact.allPeoples(self) {
+            $0.forEach({
+                "contacts name: \($0.familyName)\($0.givenName)".log()
+            })
+        }
     }
     
 }

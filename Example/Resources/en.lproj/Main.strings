@@ -27,3 +27,6 @@
 
 /* Class = "UIButton"; normalTitle = "Share"; ObjectID = "s5r-cr-8dN"; */
 "s5r-cr-8dN.normalTitle" = "Share";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "X5p-5v-5AN"; */
+"X5p-5v-5AN.normalTitle" = "Load contact";
