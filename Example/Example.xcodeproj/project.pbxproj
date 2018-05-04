@@ -58,8 +58,8 @@
 		150E40F0209C4AD300D98A9D = {
 			isa = PBXGroup;
 			children = (
-				150E4114209C4C2000D98A9D /* Resources */,
 				150E40FB209C4AD300D98A9D /* Sources */,
+				150E4114209C4C2000D98A9D /* Resources */,
 				150E40FA209C4AD300D98A9D /* Products */,
 				150E4118209C4F0400D98A9D /* Frameworks */,
 			);
